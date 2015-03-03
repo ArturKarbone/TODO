@@ -1,15 +1,29 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>TODO</title>
+    <title>TODO 0.01</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
 </head>
-<body>
+<body ng-app="TODO">
+
+    <div ng-view="">
+
+    </div>
+
+    <!--  Libraries  -->
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-messages.min.js"></script>
 
-<!-- Application -->
-<!-- Controllers -->
-<!-- Services -->
+    <!--  Application Script  -->
+    <script src="app/app.js"></script>
 
+    <!--  Controllers  -->
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/editTaskController.js"></script>
+    <script src="app/controllers/createTaskController.js"></script>
+
+    <!--  Services  -->
+    <script src="app/services/taskService.js"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+﻿<div class="container">
+    <form name="createTaskForm" novalidate>
+        <b>Create Book:</b> <br/>
+        Name: <input class="form-control" type="text" ng-model="task.name" required autofocus />
+
+        Done: <input class="form-control" type="text" ng-model="task.author" required/>
+
+        DueDate: <input class="form-control" ng-model="task.dueDate" required/>
+
+        <button class="btn btn-primary" type="submit" ng-click="create()" ng-disabled="createTaskForm.$invalid">Create New Task</button>
+    </form>
+    <a class="btn btn-primary" href="#/home">Back</a>
+</div>

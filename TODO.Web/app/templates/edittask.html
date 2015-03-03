@@ -1,0 +1,13 @@
+﻿<div class="container">
+    <form name="editTaskForm" novalidate>
+        <b>Edit Task:</b><br/>
+        Name: <input class="form-control" type="text" ng-model="task.name" required autofocus/>
+
+        Done: <input class="form-control" type="text" ng-model="task.done" required/>
+
+        DueDate <input class="form-control" ng-model="task.dueDate" required/>
+
+        <button class="btn btn-primary" type="submit" ng-click="update()" ng-disabled="editTaskForm.$invalid">Save Changes</button>
+    </form>
+    <a class="btn btn-primary" href="#/home">Back</a>
+</div>
