@@ -1,4 +1,8 @@
-﻿<table class="table">
+﻿<a class="btn btn-primary" href="#/createtask">Create New One</a>
+<a class="btn btn-primary" href="" ng-click="showall()">Show all</a>
+<a class="btn btn-primary" href="" ng-click="showtoday()">Show for today</a>
+<a class="btn btn-primary" href="" ng-click="shownextweek()">Show for next week</a>
+<table class="table" ng-if="all">
     <thead>
     <tr>
         <th>Id</th>
@@ -14,10 +18,62 @@
         <td>{{task.id}}</td>
         <td>{{task.name}}</td>
         <td>{{task.done}}</td>
-        <td>{{task.dueDate}}</td>
+        <td>{{task.dueDate | date : mediumDate}}</td>
         <td><a class="btn btn-primary" ng-href="#/edittask?id={{task.id}}">Edit</a></td>
         <td><a class="btn btn-primary" ng-click="delete(task.id)">Delete</a></td>
     </tr>
     </tbody>
 </table>
-<a class="btn btn-primary" href="#/createtask">Create New One</a>
+<div ng-if="todays">
+    Tasks for today ({{date | date : mediumDate}}):
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Done</th>
+                <th>DueDate</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in todaysTasks">
+                <td>{{task.id}}</td>
+                <td>{{task.name}}</td>
+                <td>{{task.done}}</td>
+                <td>{{task.dueDate | date : mediumDate}}</td>
+                <td><a class="btn btn-primary" ng-href="#/edittask?id={{task.id}}">Edit</a></td>
+                <td><a class="btn btn-primary" ng-click="delete(task.id)">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-if="nweeks">
+    Tasks for next Week:
+    <div ng-repeat="day in daysOfWeek">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Done</th>
+                    <th>DueDate</th>
+                    <th>Tasks for {{day}}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in tasksForWeek" ng-if="days[task.dueDate.getDay()] === day">
+                    <td>{{task.id}}</td>
+                    <td>{{task.name}}</td>
+                    <td>{{task.done}}</td>
+                    <td>{{task.dueDate | date : mediumDate}}</td>
+                    <td><a class="btn btn-primary" ng-href="#/edittask?id={{task.id}}">Edit</a></td>
+                    <td><a class="btn btn-primary" ng-click="delete(task.id)">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
