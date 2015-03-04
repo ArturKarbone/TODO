@@ -20,9 +20,9 @@
             }
         });
 
-        $routeProvider.when("/home", {
-            controller: "homeController",
-            templateUrl: "app/templates/home.html",
+        $routeProvider.when("/archive", {
+            controller: "archiveController",
+            templateUrl: "app/templates/archive.html",
             resolve: {
                 tasks: function (taskService) {
                     return taskService.getAllTasks().then(function (response) {
@@ -32,7 +32,31 @@
             }
         });
 
-        $routeProvider.otherwise({ redirectTo: "/home" });
+        $routeProvider.when("/today", {
+            controller: "todayController",
+            templateUrl: "app/templates/today.html",
+            resolve: {
+                tasks: function (taskService) {
+                    return taskService.getAllTasks().then(function (response) {
+                        return response.data;
+                    });
+                }
+            }
+        });
+
+        $routeProvider.when("/nextweek", {
+            controller: "nextWeekController",
+            templateUrl: "app/templates/nextweek.html",
+            resolve: {
+                tasks: function (taskService) {
+                    return taskService.getAllTasks().then(function (response) {
+                        return response.data;
+                    });
+                }
+            }
+        });
+
+        $routeProvider.otherwise({ redirectTo: "/today" });
 
     });
 }());

@@ -1,0 +1,66 @@
+﻿<!-- TASKS FOR WEEK -->
+    <div class="row mt" ng-repeat="day in daysOfWeek">
+        <div class="col-md-12">
+            <section class="task-panel tasks-widget">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h5><i class="fa fa-tasks"></i> Tasks for {{day}}</h5>
+                    </div>
+                    <br>
+                </div>
+                <div class="panel-body">
+                    <div class="task-content">
+
+                        <ul class="task-list">
+
+                            <li ng-repeat="task in tasksForWeek" ng-if="days[task.dueDate.getDay()] === day">
+                                <div class="task-checkbox">
+                                    <a class="btn btn-success btn-xs" ng-class="{'btn-success': task.done, 'btn-warning': !task.done}" ng-click="done(task)"><i class=" fa fa-check"></i></a>
+                                </div>
+                                <div class="task-title">
+                                    <span class="task-title-sp">{{task.name}}</span>
+                                    <span class="label label-success" ng-if="task.done">Done</span>
+                                    <span class="label label-warning" ng-if="!task.done">Undone</span>
+                                    <div class="pull-right hidden-phone">
+                                        <span>Due: {{task.dueDate | date : mediumDate}}</span>
+                                        <a class="btn btn-primary btn-xs" ng-href="#/edittask?id={{task.id}}&return=nextweek"><i class="fa fa-pencil"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class=" add-task-row">
+                        <a class="btn btn-success btn-sm pull-left" ng-href="#/createtask?day={{daysOfWeek.indexOf(day)}}">Add New Task</a>
+                    </div>
+                </div>
+            </section>
+        </div><!-- /col-md-12-->
+</div><!-- /row -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add task</h4>
+            </div>
+            <div class="modal-body">
+
+                <form name="createTaskForm" novalidate>
+                    Name: <input class="form-control" type="text" ng-model="createTask.name" required autofocus />
+
+                    DueDate: <input class="form-control" type="date" ng-model="createTask.dueDate" required />
+
+                    <button class="btn btn-primary" type="submit" ng-click="create()" ng-disabled="createTaskForm.$invalid" data-dismiss="modal">Create New Task</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>      

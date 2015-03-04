@@ -103,11 +103,11 @@ namespace TODO.WebApi.Controllers
         public IHttpActionResult FindAll()
         {
             var assignments = _assignmentService.FindAll();
-            if (assignments.Any())
+            if (assignments != null && assignments.Any())
             {
                 return Ok(assignments);
             }
-            return BadRequest();
+            return Ok();
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿(function () {
     "use strict";
 
-    angular.module("TODO").controller("editTaskController", ["$scope", "$location", "taskService", "task", function ($scope, $location, taskService, task) {
+    angular.module("TODO").controller("editTaskController", ["$scope", "$location", "$route", "taskService", "notificationService", "task", function ($scope, $location, $route, taskService, notificationService, task) {
+
+        $scope.return = $route.current.params.return;
 
         $scope.task = {
             id: task.id,
@@ -12,11 +14,19 @@
 
         $scope.update = function () {
             taskService.updateTask($scope.task).then(function (response) {
-                $location.path("/home");
+                if ($scope.return === "today"){
+                    $location.path("/today");
+                }
+                else if ($scope.return === "archive") {
+                    $location.path("/archive");
+                }
+                else if ($scope.return === "nextweek") {
+                    $location.path("/nextweek");
+                } else {
+                    $location.path("/today");
+                }
             }, function (response) {
-                //TDB some error messagin here
-                alert("Smth goes really wrong");
-                console.log(response);
+                notificationService.exception(response.data);
             });
         }
 

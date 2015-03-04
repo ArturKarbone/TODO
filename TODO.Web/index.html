@@ -2,28 +2,96 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>TODO 0.01</title>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet"/>
+    <link href="Content/toastr.css" rel="stylesheet" />
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="Content/to-do.css" rel="stylesheet" />
+    <link href="Content/style-responsive.css" rel="stylesheet" />
+    <link href="Content/style.css" rel="stylesheet" />
 </head>
 <body ng-app="TODO">
+    <section id="container">
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
+            <!--logo start-->
+            <a href="" class="logo" data-placement="right" data-original-title="Toggle Navigation"><b>TODO APP</b></a>
+            <!--logo end-->
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <p class="centered"><a href="#/today"><img src="Content/images/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                    <h5 class="centered">Today</h5>
 
-    <div ng-view="">
+                    <li class="mt">
+                        <a href="#/archive">
+                            <i class="fa fa-database"></i>
+                            <span>Archive</span>
+                        </a>
+                    </li>
 
-    </div>
+                    <li class="sub-menu">
+                        <a href="#/today">
+                            <i class="fa fa-tasks"></i>
+                            <span>Today</span>
+                        </a>
+                    </li>
 
-    <!--  Libraries  -->
-    <script src="Scripts/angular.min.js"></script>
+                    <li class="sub-menu">
+                        <a href="#/nextweek">
+                            <i class="fa fa-calendar-o"></i>
+                            <span>Next week</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <div ng-view="">
+                    
+                </div>
+            </section><!--/wrapper -->
+        </section><!-- /MAIN CONTENT -->
+        <!--main content end-->
+    </section>
+
+<!-- Libraries -->
+
+<script src="Scripts/angular.min.js"></script>
     <script src="Scripts/angular-route.min.js"></script>
     <script src="Scripts/angular-messages.min.js"></script>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/toastr.js"></script>
 
     <!--  Application Script  -->
     <script src="app/app.js"></script>
-
+    
     <!--  Controllers  -->
-    <script src="app/controllers/homeController.js"></script>
     <script src="app/controllers/editTaskController.js"></script>
     <script src="app/controllers/createTaskController.js"></script>
+    <script src="app/controllers/archiveController.js"></script>
+    <script src="app/controllers/nextWeekController.js"></script>
+    <script src="app/controllers/todayController.js"></script>
 
     <!--  Services  -->
     <script src="app/services/taskService.js"></script>
+    <script src="app/services/notificationService.js"></script>
+
+    <!-- From template -->
+    <script src="Scripts/common-scripts.js"></script>
 </body>
 </html>
