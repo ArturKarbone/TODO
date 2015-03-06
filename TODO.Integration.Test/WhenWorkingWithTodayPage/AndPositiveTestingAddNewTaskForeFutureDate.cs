@@ -41,8 +41,7 @@ namespace TODO.Integration.Test.WhenWorkingWithTodayPage
              newtaskform.SendKeys("С framework былобы гораздо быстрее писать тесты");
 
              var duedate = _driver.FindElement(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[2]"));
-             var tomorrow = DateTime.Today.AddDays(1);
-             duedate.SendKeys(string.Format("{0}.{1}.{2}", tomorrow.Day,tomorrow.Month,tomorrow.Year));
+             duedate.SendKeys(DateTime.Today.AddDays(1).ToShortDateString());
 
              var createnewtask = _driver.FindElement(By.CssSelector("#myModal > div.modal-dialog > div > div.modal-body > form > button"));
              createnewtask.Click();

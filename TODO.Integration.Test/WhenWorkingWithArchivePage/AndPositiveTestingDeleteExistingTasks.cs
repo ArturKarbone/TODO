@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -10,32 +9,30 @@ using TODO.Data.Context;
 namespace TODO.Integration.Test.WhenWorkingWithArchivePage
 {
     [TestFixture]
-
-    class AndPositiveTestingAddNewTasks
+    public class AndPositiveTestingDeleteExistingTasks
     {
-        private DataDbContext _dataDbContext;
         private IWebDriver _driver;
         private WebDriverWait _wait;
-        
+        private DataDbContext _dataDbContext;
+
         [SetUp]
         public void SetUp()
         {
-            _dataDbContext = new DataDbContext();
             _driver = new ChromeDriver(@"C:\");
-            _wait= new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            _dataDbContext = new DataDbContext();
             var assignments = _dataDbContext.Assignments;
             _dataDbContext.Assignments.RemoveRange(assignments);
             _dataDbContext.SaveChanges();
+            
         }
-        [Test]
-        public void TestingAddNewTasks()
-        {
-            
 
-            
+        [Test]
+        public void TestingDeleteTasks()
+        {
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl("http://localhost:62564/#/archive");
-            
+
             for (int i = 1; i <= 3; i++)
             {
                 _wait.Until(ExpectedConditions.ElementExists(By.LinkText("Add New Task")));
@@ -55,22 +52,22 @@ namespace TODO.Integration.Test.WhenWorkingWithArchivePage
                 createnewtask.Click();
                 Thread.Sleep(1000);
             }
-
-            for (int  i = 1;  i <=3;  i++)
+            for (int i = 1; i <= 3; i++)
             {
-                Assert.IsInstanceOf<IWebElement>(_driver.FindElement(By.XPath(string.Format("//*[@id='main-content']/section/div/div[1]/div/section/div/div[1]/ul/li[{0}]/div[2]/span[1]",i))));
+                var delete1 = _driver.FindElement(By.XPath(string.Format("//*[@id='main-content']/section/div/div[1]/div/section/div/div[1]/ul/li{0}/div[2]/div/a[2]/i", i != 3 ? "[1]" : string.Empty)));
+                delete1.Click();
+                Thread.Sleep(1000);
             }
-            
-            var assignments = _dataDbContext.Assignments;
-            Assert.IsTrue(assignments.Count() == 3);
-
-
+            Assert.Throws<NoSuchElementException>(() => _driver.FindElement(By.XPath("//*[@id='main-content']/section/div/div[1]/div/section/div")));
+            Assert.IsEmpty(_dataDbContext.Assignments);
         }
+
         [TearDown]
         public void TearDown()
         {
             _driver.Quit();
             _dataDbContext.Dispose();
-        } 
+        }
+        
     }
 }
