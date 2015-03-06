@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -12,13 +13,16 @@ namespace TODO.Integration.Test.WhenWorkingWithArchivePage
     class AndPositiveTestingAddNewTasks
     {
         private DataDbContext _dataDbContext;
-
+        private IWebDriver _driver;
+        private WebDriverWait _wait;
+        
         [SetUp]
         public void SetUp()
         {
             _dataDbContext = new DataDbContext();
+            _driver = new ChromeDriver(@"C:\");
+            _wait= new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         }
-
         [Test]
         public void TestingAddNewTasks()
         {
@@ -26,47 +30,36 @@ namespace TODO.Integration.Test.WhenWorkingWithArchivePage
             _dataDbContext.Assignments.RemoveRange(assignments);
             _dataDbContext.SaveChanges();
 
-            IWebDriver driver = new ChromeDriver(@"C:\");
-            driver.Manage().Window.Maximize();
-            driver.Url = "http://localhost:62564/#/archive";
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl("http://localhost:62564/#/archive");
+            
             var tomorrow = DateTime.Today.AddDays(1);
-
-            wait.Until(ExpectedConditions.ElementExists(By.CssSelector("html body.ng-scope section#container section#main-content section.wrapper div.ng-scope div.ng-scope a.btn.btn-success.btn-sm.pull-left")));
-            var addnewtaskbutton =driver.FindElement(By.CssSelector("html body.ng-scope section#container section#main-content section.wrapper div.ng-scope div.ng-scope a.btn.btn-success.btn-sm.pull-left"));
-            addnewtaskbutton.Click();
-
-            wait.Until(ExpectedConditions.ElementExists(By.CssSelector("html body.ng-scope.modal-open section#container section#main-content section.wrapper div.ng-scope div#myModal.modal.fade.ng-scope.in div.modal-dialog div.modal-content div.modal-body form.ng-pristine.ng-invalid.ng-invalid-required input.form-control.ng-pristine.ng-invalid.ng-invalid-required.ng-touched")));
-            var newtaskform =driver.FindElement(By.CssSelector("html body.ng-scope.modal-open section#container section#main-content section.wrapper div.ng-scope div#myModal.modal.fade.ng-scope.in div.modal-dialog div.modal-content div.modal-body form.ng-pristine.ng-invalid.ng-invalid-required input.form-control.ng-pristine.ng-invalid.ng-invalid-required.ng-touched"));
-            newtaskform.SendKeys("1");
             
-            var duedate = driver.FindElement(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[2]"));
-            duedate.SendKeys(string.Format("{0}.{1}.{2}", tomorrow.Day, tomorrow.Month, tomorrow.Year));
+            for (int i = 1; i <= 3; i++)
+            {
+                _wait.Until(ExpectedConditions.ElementExists(By.LinkText("Add New Task")));
+                _wait.Until(ExpectedConditions.ElementIsVisible(By.LinkText("Add New Task")));
+                var addnewtaskbutton = _driver.FindElement(By.LinkText("Add New Task"));
+                addnewtaskbutton.Click();
 
-            var createnewtask = driver.FindElement(By.CssSelector("#myModal > div.modal-dialog > div > div.modal-body > form > button"));
-            createnewtask.Click();
+                _wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[1]")));
+                _wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[1]")));
+                var newtaskform = _driver.FindElement(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[1]"));
+                newtaskform.SendKeys(i.ToString("g"));
 
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='main-content']/section/div/div[1]/div/section/div/div[2]/a")));
-            var addnewtaskbutton2 = driver.FindElement(By.XPath("//*[@id='main-content']/section/div/div[1]/div/section/div/div[2]/a"));
-            addnewtaskbutton2.Click();
+                var duedate = _driver.FindElement(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[2]"));
+                duedate.SendKeys(string.Format("{0}.{1}.{2}", tomorrow.Day, tomorrow.Month, tomorrow.Year));
 
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[1]")));
-            var newtaskforma = driver.FindElement(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[1]"));
-            newtaskforma.SendKeys("2");
-
-            var duedate1 = driver.FindElement(By.XPath("//*[@id='myModal']/div[2]/div/div[2]/form/input[2]"));
-            duedate1.SendKeys(string.Format("{0}.{1}.{2}", tomorrow.Day, tomorrow.Month, tomorrow.Year));
-
-            var createnewtask2 = driver.FindElement(By.CssSelector("#myModal > div.modal-dialog > div > div.modal-body > form > button"));
-            createnewtask2.Click();
-            
-
-            //wait.Until(ExpectedConditions.ElementExists(By.XPath("/html/body/section/aside/div/ul/li[3]/a/span")));
-            //var nextweek = driver.FindElement(By.XPath("/html/body/section/aside/div/ul/li[3]/a/span"));
-            //nextweek.Click();
-            //wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='main-content']/section/div/div[2]/div/section/div[2]/div[1]/ul/li/div[2]/span[1]")));
-            //Assert.IsTrue(driver.PageSource.Contains("С framework былобы гораздо быстрее писать тесты"));
-            //driver.Close();
+                var createnewtask = _driver.FindElement(By.CssSelector("#myModal > div.modal-dialog > div > div.modal-body > form > button"));
+                createnewtask.Click();
+                Thread.Sleep(1000);
+            }
         }
+        [TearDown]
+        public void TearDown()
+        {
+            _driver.Quit();
+        } 
     }
 }
