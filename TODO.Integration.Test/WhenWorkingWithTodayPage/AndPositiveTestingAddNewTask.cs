@@ -3,15 +3,29 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using TODO.Data.Context;
 
 namespace TODO.Integration.Test.WhenWorkingWithTodayPage
 {
     [TestFixture]
     class AndPositiveTestingAddNewTask
     {
+        private DataDbContext _dataDbContext;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _dataDbContext = new DataDbContext();
+        }
+
+
         [Test]
         public void TestingAddNewTask()
         {
+            var assignments = _dataDbContext.Assignments;
+            _dataDbContext.Assignments.RemoveRange(assignments);
+            _dataDbContext.SaveChanges();
+
             IWebDriver driver = new ChromeDriver(@"E:\QA\lib");
             driver.Url = "http://localhost:62564/#/today";
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
@@ -27,8 +41,8 @@ namespace TODO.Integration.Test.WhenWorkingWithTodayPage
             var createnewtask = driver.FindElement(By.CssSelector("#myModal > div.modal-dialog > div > div.modal-body > form > button"));
             createnewtask.Click();
 
-            driver.Navigate().Refresh();
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id='main-content']/section/div/div[1]/div/section/div/div[1]/ul/li/div[2]/span[1]")));
             Assert.IsTrue(driver.PageSource.Contains("С framework былобы гораздо быстрее писать тесты"));
             driver.Close();
         }
