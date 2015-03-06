@@ -25,7 +25,7 @@ namespace TODO.Integration.Test.WhenWorkingWithTodayPage
             _dataDbContext.Assignments.RemoveRange(assignments);
             _dataDbContext.SaveChanges();
 
-            IWebDriver driver = new ChromeDriver(@"E:\QA\lib");
+            IWebDriver driver = new ChromeDriver(@"C:\");
             driver.Url = "http://localhost:62564/#/today";
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
 

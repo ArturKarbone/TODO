@@ -26,7 +26,7 @@ namespace TODO.Integration.Test.WhenWorkingWithArchivePage
             _dataDbContext.Assignments.RemoveRange(assignments);
             _dataDbContext.SaveChanges();
 
-            IWebDriver driver = new ChromeDriver(@"E:\QA\lib");
+            IWebDriver driver = new ChromeDriver(@"C:\");
             driver.Manage().Window.Maximize();
             driver.Url = "http://localhost:62564/#/archive";
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
