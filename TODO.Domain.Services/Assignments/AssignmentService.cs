@@ -76,5 +76,15 @@ namespace TODO.Domain.Services.Assignments
         {
             return _assignmentRepository.FindAll();
         }
+
+        public List<Assignment> FindForToday()
+        {
+            return _assignmentRepository.FindForToday();
+        }
+
+        public List<Assignment> FindForNextWeek()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -109,5 +109,24 @@ namespace TODO.WebApi.Controllers
             }
             return Ok();
         }
+
+        [HttpGet]
+        [Route("findfortoday")]
+        public IHttpActionResult FindForToday()
+        {
+            var assignments = _assignmentService.FindForToday();
+            if (assignments != null)
+            {
+                return Ok(assignments);
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Route("findfornextweek")]
+        public IHttpActionResult FindForNextWeek()
+        {
+            return BadRequest();
+        }
     }
 }

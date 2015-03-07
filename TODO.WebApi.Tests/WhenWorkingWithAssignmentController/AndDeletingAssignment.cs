@@ -1,5 +1,7 @@
-﻿using System.Web.Http.Results;
+﻿using System;
+using System.Web.Http.Results;
 using NUnit.Framework;
+using TODO.WebApi.Models.Assignments;
 
 namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
 {
@@ -18,8 +20,14 @@ namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
         public void AndAssignmentExist_OkResultMustBeReturned()
         {
             // Arrange
+            AssignmentControllerTestContext.AssignmentController.Create(new CreateNewAssignmentViewModel
+            {
+                Done = false,
+                DueDate = DateTime.Today,
+                Name = "Some simple task for today"
+            });
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.Delete(2);
+            var result = AssignmentControllerTestContext.AssignmentController.Delete(1);
             // Assert
             Assert.IsInstanceOf<OkResult>(result);
         }

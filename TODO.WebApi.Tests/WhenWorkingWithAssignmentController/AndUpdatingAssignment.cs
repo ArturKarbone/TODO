@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Results;
 using NUnit.Framework;
-using TODO.Domain.Core.Entities;
 using TODO.WebApi.Models.Assignments;
 
 namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
@@ -33,7 +32,8 @@ namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
         public void AndAssignmentIsValid_OkResultMustBeReturned()
         {
             // Arrange
-            var goodTask = new UpdateAssignmentViewModel {Id = 2, Name = "DONE!", Done = true, DueDate = DateTime.Today};
+            AssignmentControllerTestContext.AssignmentController.Create(new CreateNewAssignmentViewModel {Done = false, DueDate = DateTime.Today, Name = "Some name"});
+            var goodTask = new UpdateAssignmentViewModel {Id = 1, Name = "DONE!", Done = true, DueDate = DateTime.Today};
             // Action
             var result = AssignmentControllerTestContext.AssignmentController.Update(goodTask);
             // Assert

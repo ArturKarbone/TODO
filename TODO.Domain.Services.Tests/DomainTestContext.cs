@@ -43,8 +43,11 @@ namespace TODO.Domain.Services.Tests
                 .Returns((int i) => Assignments.Find(x => x.Id == i));
 
             MockAssignmentRepository.Setup(x => x.FindAll()).Returns(Assignments.ToList());
+            MockAssignmentRepository.Setup(x => x.FindForToday())
+                .Returns(
+                    Assignments.Where(x => x.DueDate.ToShortDateString() == DateTime.Today.ToShortDateString()).ToList());
 
-            // Services
+                // Services
             AssignmentService = new AssignmentService(MockAssignmentRepository.Object);
 
 

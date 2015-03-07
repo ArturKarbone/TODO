@@ -56,6 +56,7 @@
     <Compile Include="WhenWorkingWithAssignmentController\AndDeletingAssignment.cs" />
     <Compile Include="WhenWorkingWithAssignmentController\AndFindingAllAsignments.cs" />
     <Compile Include="WhenWorkingWithAssignmentController\AndFindingAssignmentById.cs" />
+    <Compile Include="WhenWorkingWithAssignmentController\AndFindingAssignmentsForToday.cs" />
     <Compile Include="WhenWorkingWithAssignmentController\AndUpdatingAssignment.cs" />
     <Compile Include="WhenWorkingWithAssignmentController\AssignmentControllerTestContext.cs" />
   </ItemGroup>

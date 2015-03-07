@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TODO.Data.Context;
 using TODO.Domain.Core.Entities;
@@ -53,6 +54,18 @@ namespace TODO.Data.Assignments
                 return _dataDbContext.Assignments.ToList();
             }
             return null;;
+        }
+
+        public List<Assignment> FindForToday()
+        {
+            if (!_dataDbContext.Assignments.Any()) return null;
+            var assignments = _dataDbContext.Assignments.Where(x => x.DueDate.ToShortDateString() == DateTime.Today.ToShortDateString());
+            return assignments.Any() ? assignments.ToList() : null;
+        }
+
+        public List<Assignment> FindForNextWeek()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

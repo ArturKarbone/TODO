@@ -11,5 +11,7 @@ namespace TODO.Domain.Services.Assignments
 
         Assignment FindById(int id);
         List<Assignment> FindAll();
+        List<Assignment> FindForToday();
+        List<Assignment> FindForNextWeek();
     }
 }

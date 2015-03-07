@@ -5,13 +5,12 @@ using Moq;
 using TODO.Data.Assignments;
 using TODO.Domain.Core.Entities;
 using TODO.Domain.Services.Assignments;
-using TODO.WebApi.Controllers;
+using TODO.Domain.Services.Validation.Assignments;
 
-namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
+namespace TODO.Domain.Services.Tests
 {
-    public class AssignmentControllerTestContext
+    public class DomainTestContext2
     {
-        // In-memory list of data
         public List<Assignment> Assignments { get; set; }
 
         // Mock Repositories
@@ -20,16 +19,17 @@ namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
         // Services to test
         public AssignmentService AssignmentService { get; set; }
 
-        // Controllers
-        public AssignmentController AssignmentController { get; set; }
+        // Assignments validators
+        public CreateNewAssignmentValidator CreateNewAssignmentValidator { get; set; }
+        public UpdateAssignmentValidator UpdateAssignmentValidator { get; set; }
+        public IdValidator FindByIdValidator { get; set; }
 
-        public AssignmentControllerTestContext()
+        public DomainTestContext2()
         {
-            // Data
             Assignments = new List<Assignment>();
 
             // Repos
-            MockAssignmentRepository = new Mock<IAssignmentRepository>();
+            MockAssignmentRepository = new Mock<IAssignmentRepository>(MockBehavior.Strict);
 
             // Some db behavior
             // FindById
@@ -65,13 +65,14 @@ namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
                     assignment.Id = Assignments.Count + 1;
                     Assignments.Add(assignment);
                 });
-
             // Services
             AssignmentService = new AssignmentService(MockAssignmentRepository.Object);
 
-            // Controllers
-            AssignmentController = new AssignmentController(AssignmentService);
+
+            // Validators
+            CreateNewAssignmentValidator = new CreateNewAssignmentValidator();
+            UpdateAssignmentValidator = new UpdateAssignmentValidator(MockAssignmentRepository.Object);
+            FindByIdValidator = new IdValidator(MockAssignmentRepository.Object);
         }
     }
 }
-
