@@ -65,7 +65,13 @@ namespace TODO.Data.Assignments
 
         public List<Assignment> FindForNextWeek()
         {
-            throw new System.NotImplementedException();
+            if (_dataDbContext.Assignments.Any())
+            {
+                var assignments = _dataDbContext.Assignments.Where(x => x.DueDate <= DateTime.Today.AddDays(7));
+                if (assignments.Any()) return assignments.ToList();
+                return null;
+            }
+            return null;
         }
     }
 }

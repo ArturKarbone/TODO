@@ -126,7 +126,12 @@ namespace TODO.WebApi.Controllers
         [Route("findfornextweek")]
         public IHttpActionResult FindForNextWeek()
         {
-            return BadRequest();
+            var assignments = _assignmentService.FindForNextWeek();
+            if (assignments != null)
+            {
+                return Ok(assignments);
+            }
+            return NotFound();
         }
     }
 }

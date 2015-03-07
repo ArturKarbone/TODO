@@ -84,7 +84,7 @@ namespace TODO.Domain.Services.Assignments
 
         public List<Assignment> FindForNextWeek()
         {
-            throw new System.NotImplementedException();
+            return _assignmentRepository.FindForNextWeek();
         }
     }
 }
