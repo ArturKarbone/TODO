@@ -86,5 +86,15 @@ namespace TODO.Domain.Services.Assignments
         {
             return _assignmentRepository.FindForNextWeek();
         }
+
+        public List<Assignment> FindDone()
+        {
+            return _assignmentRepository.FindDone();
+        }
+
+        public List<Assignment> FindUndone()
+        {
+            return _assignmentRepository.FindUndone();
+        }
     }
 }

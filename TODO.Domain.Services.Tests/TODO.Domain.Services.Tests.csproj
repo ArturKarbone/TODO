@@ -56,6 +56,8 @@
     <Compile Include="WhenWorkingWithAssignmentsService\AndFindingAssigmentsForToday.cs" />
     <Compile Include="WhenWorkingWithAssignmentsService\AndFindingAssignmentById.cs" />
     <Compile Include="WhenWorkingWithAssignmentsService\AndFindingAssignmentsForNextWeek.cs" />
+    <Compile Include="WhenWorkingWithAssignmentsService\AndFindingDoneAssignments.cs" />
+    <Compile Include="WhenWorkingWithAssignmentsService\AndFindingUndoneAssignments.cs" />
     <Compile Include="WhenWorkingWithAssignmentsService\AndUpdatingAssignment.cs" />
     <Compile Include="WhenWorkingWithValidators\AndUsingAssignmentValidators\AndUsingCreateNewAssignmentValidator.cs" />
     <Compile Include="WhenWorkingWithValidators\AndUsingAssignmentValidators\AndUsingFindByIdValidator.cs" />

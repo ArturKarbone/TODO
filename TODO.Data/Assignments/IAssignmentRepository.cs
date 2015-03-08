@@ -13,5 +13,7 @@ namespace TODO.Data.Assignments
         List<Assignment> FindAll();
         List<Assignment> FindForToday();
         List<Assignment> FindForNextWeek();
+        List<Assignment> FindDone();
+        List<Assignment> FindUndone();
     }
 }

@@ -73,5 +73,27 @@ namespace TODO.Data.Assignments
             }
             return null;
         }
+
+        public List<Assignment> FindDone()
+        {
+            if (_dataDbContext.Assignments.Any())
+            {
+                var assignments = _dataDbContext.Assignments.Where(x => x.Done);
+                if (assignments.Any()) return assignments.ToList();
+                return null;
+            }
+            return null;
+        }
+
+        public List<Assignment> FindUndone()
+        {
+            if (_dataDbContext.Assignments.Any())
+            {
+                var assignments = _dataDbContext.Assignments.Where(x => !x.Done);
+                if (assignments.Any()) return assignments.ToList();
+                return null;
+            }
+            return null;
+        }
     }
 }

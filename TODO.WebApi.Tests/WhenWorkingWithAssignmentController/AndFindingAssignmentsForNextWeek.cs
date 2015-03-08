@@ -41,7 +41,7 @@ namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
         }
 
         [Test]
-        public void AndThereAreAssignmentsAndAssignmentsForNextWeek_ShouldBeReturned()
+        public void AndThereAreAssignmentsAndAssignmentsForNextWeek_OkNegotiatedContentResultShouldBeReturned()
         {
             // Arrange
             AssignmentControllerTestContext.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = false, DueDate = DateTime.Today.AddDays(2), Name = "Cool stuff NW" });

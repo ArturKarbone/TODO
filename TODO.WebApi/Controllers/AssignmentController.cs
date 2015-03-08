@@ -133,5 +133,29 @@ namespace TODO.WebApi.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet]
+        [Route("finddone")]
+        public IHttpActionResult FindDone()
+        {
+            var assignments = _assignmentService.FindDone();
+            if (assignments != null)
+            {
+                return Ok(assignments);
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Route("findundone")]
+        public IHttpActionResult FindUndone()
+        {
+            var assignments = _assignmentService.FindUndone();
+            if (assignments != null)
+            {
+                return Ok(assignments);
+            }
+            return NotFound();
+        }
     }
 }

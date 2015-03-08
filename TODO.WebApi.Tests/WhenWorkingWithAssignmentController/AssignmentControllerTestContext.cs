@@ -63,6 +63,39 @@ namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
                 }
                 return null;
             });
+            // Find Done
+            MockAssignmentRepository.Setup(x => x.FindDone()).Returns(() =>
+            {
+                if (Assignments.Any())
+                {
+                    var assignments = Assignments.Where(x => x.Done);
+                    if (assignments.Any()) return assignments.ToList();
+                    return null;
+                }
+                return null;
+            });
+            // Find undone
+            MockAssignmentRepository.Setup(x => x.FindUndone()).Returns(() =>
+            {
+                if (Assignments.Any())
+                {
+                    var assignments = Assignments.Where(x => !x.Done);
+                    if (assignments.Any()) return assignments.ToList();
+                    return null;
+                }
+                return null;
+            });
+            // Find undone
+            MockAssignmentRepository.Setup(x => x.FindUndone()).Returns(() =>
+            {
+                if (Assignments.Any())
+                {
+                    var assignments = Assignments.Where(x => !x.Done);
+                    if (assignments.Any()) return assignments.ToList();
+                    return null;
+                }
+                return null;
+            });
             // Delete
             MockAssignmentRepository.Setup(x => x.Delete(It.IsAny<int>())).Callback((int id) =>
             {
