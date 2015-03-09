@@ -63,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WhenWorkingWithArchivePage\AndPositiveTestingAddNewTasks.cs" />
     <Compile Include="WhenWorkingWithArchivePage\AndPositiveTestingDeleteExistingTasks.cs" />
-    <Compile Include="WhenWorkingWithArchivePage\AndPositiveTestingExistingTask.cs" />
+    <Compile Include="WhenWorkingWithArchivePage\AndPositiveTestingEditExistingTask.cs" />
     <Compile Include="WhenWorkingWithTodayPage\AndPositiveTestingAddNewTask.cs" />
     <Compile Include="WhenWorkingWithTodayPage\AndPositiveTestingAddNewTaskForeFutureDate.cs" />
     <Compile Include="WhenWorkingWithTodayPage\AndPositiveTestingAddNewTaskForePasteDate.cs" />
