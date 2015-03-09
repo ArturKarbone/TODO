@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainTestContext.cs" />
     <Compile Include="DomainTestContext2.cs" />
     <Compile Include="AssignmentRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="WebApi\WhenWorkingWithAssignmentController\AndFindingDoneAssignments.cs" />
     <Compile Include="WebApi\WhenWorkingWithAssignmentController\AndFindingUndoneAssignments.cs" />
     <Compile Include="WebApi\WhenWorkingWithAssignmentController\AndUpdatingAssignment.cs" />
-    <Compile Include="AssignmentControllerTestContext.cs" />
     <Compile Include="Domain.Services\WhenWorkingWithAssignmentsService\AndCreatingNewAssignment.cs" />
     <Compile Include="Domain.Services\WhenWorkingWithAssignmentsService\AndDeletingAssignment.cs" />
     <Compile Include="Domain.Services\WhenWorkingWithAssignmentsService\AndFindingAllAssignments.cs" />

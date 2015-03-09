@@ -10,12 +10,12 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
     [TestFixture]
     public class AndUpdatingAssignment
     {
-        public DomainTestContext DomainTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            DomainTestContext = new DomainTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -24,18 +24,21 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
             // Arrange
             // Action
             // Assert
-            Assert.Throws<DomainValidationException>( () => DomainTestContext.AssignmentService.Update(null));
+            Assert.Throws<DomainValidationException>( () => DomainTestContext2.AssignmentService.Update(null));
         }
 
         [Test]
         public void AndAssignmentIsValid_AssignmentRepositoryUpdateShouldBeCalled()
         {
             // Arrange
-            var goodTask = new Assignment{Id = 2, Done = true, DueDate = DateTime.Today, Name = "New Name"};
+            var goodTask = new Assignment{Id = 0, Done = true, DueDate = DateTime.Today, Name = "New Name"};
+            DomainTestContext2.AssignmentService.Create(goodTask);
             // Action
-            DomainTestContext.AssignmentService.Update(goodTask);
+            goodTask.Id = 1;
+            goodTask.Name = "New New Name";
+            DomainTestContext2.AssignmentService.Update(goodTask);
             // Assert
-            DomainTestContext.MockAssignmentRepository.Verify(x => x.Update(It.IsAny<Assignment>()), Times.Once);
+            DomainTestContext2.AssignmentRepositoryMock.AssignmentRepository.Verify(x => x.Update(It.IsAny<Assignment>()), Times.Once);
         }
 
         [Test]
@@ -58,7 +61,7 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
             // Assert
             foreach (var badTask in badTasks)
             {
-                Assert.Throws<DomainValidationException>(() => DomainTestContext.AssignmentService.Update(badTask));
+                Assert.Throws<DomainValidationException>(() => DomainTestContext2.AssignmentService.Update(badTask));
             }
         }
     }

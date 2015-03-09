@@ -10,12 +10,12 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
     [TestFixture]
     public class AndUpdatingAssignment
     {
-        public AssignmentControllerTestContext AssignmentControllerTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void Setup()
         {
-            AssignmentControllerTestContext = new AssignmentControllerTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
         {
             // Arrange
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.Update(null);
+            var result = DomainTestContext2.AssignmentController.Update(null);
             // Assert
             Assert.IsInstanceOf<InvalidModelStateResult>(result);
         }
@@ -32,10 +32,10 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
         public void AndAssignmentIsValid_OkResultMustBeReturned()
         {
             // Arrange
-            AssignmentControllerTestContext.AssignmentController.Create(new CreateNewAssignmentViewModel {Done = false, DueDate = DateTime.Today, Name = "Some name"});
+            DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel {Done = false, DueDate = DateTime.Today, Name = "Some name"});
             var goodTask = new UpdateAssignmentViewModel {Id = 1, Name = "DONE!", Done = true, DueDate = DateTime.Today};
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.Update(goodTask);
+            var result = DomainTestContext2.AssignmentController.Update(goodTask);
             // Assert
             Assert.IsInstanceOf<OkResult>(result);
         }
@@ -58,7 +58,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             var results = new List<IHttpActionResult>();
             foreach (var badTask in badTasks)
             {
-                results.Add(AssignmentControllerTestContext.AssignmentController.Update(badTask));
+                results.Add(DomainTestContext2.AssignmentController.Update(badTask));
             }
             // Assert
             foreach (var result in results)
@@ -79,7 +79,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
                 Name = "Bad Id"
             };
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.Update(badTask);
+            var result = DomainTestContext2.AssignmentController.Update(badTask);
             // Assert
             Assert.IsInstanceOf<InvalidModelStateResult>(result);
         }

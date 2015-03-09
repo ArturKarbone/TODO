@@ -9,21 +9,21 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
     [TestFixture]
     public class AndFindingAssignmentById
     {
-        public AssignmentControllerTestContext AssignmentControllerTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            AssignmentControllerTestContext = new AssignmentControllerTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
         public void AndAssignmentExist_OkResultMustBeReturned()
         {
             // Arrange
-            AssignmentControllerTestContext.AssignmentController.Create(new CreateNewAssignmentViewModel {Done = false, DueDate = DateTime.Today, Name = "Task for today"});
+            DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = false, DueDate = DateTime.Today, Name = "Task for today" });
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.FindById(1);
+            var result = DomainTestContext2.AssignmentController.FindById(1);
             // Assert
             Assert.IsInstanceOf<OkNegotiatedContentResult<Assignment>>(result);
         }
@@ -33,7 +33,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
         {
             // Arrange
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.FindById(66);
+            var result = DomainTestContext2.AssignmentController.FindById(66);
             // Assert
             Assert.IsInstanceOf<InvalidModelStateResult>(result);
         }
@@ -43,7 +43,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
         {
             // Arrange
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.FindById(-652);
+            var result = DomainTestContext2.AssignmentController.FindById(-652);
             // Assert
             Assert.IsInstanceOf<InvalidModelStateResult>(result);
         }

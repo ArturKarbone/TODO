@@ -10,12 +10,12 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
     [TestFixture]
     public class AndCreatingNewAssignment
     {
-        public DomainTestContext DomainTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            DomainTestContext = new DomainTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
             // Arrange
             // Action
             // Assert
-            Assert.Throws<DomainValidationException>( () => DomainTestContext.AssignmentService.Create(null) );
+            Assert.Throws<DomainValidationException>( () => DomainTestContext2.AssignmentService.Create(null) );
         }
 
         [Test]
@@ -33,9 +33,9 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
             // Arrange
             var goodTask = new Assignment {Id = 0, Name = "The new task FTW!", Done = false, DueDate = DateTime.Today};
             // Action
-            DomainTestContext.AssignmentService.Create(goodTask);
+            DomainTestContext2.AssignmentService.Create(goodTask);
             // Assert
-            DomainTestContext.MockAssignmentRepository.Verify(x => x.Create(It.IsAny<Assignment>()), Times.Once);
+            DomainTestContext2.AssignmentRepositoryMock.AssignmentRepository.Verify(x => x.Create(It.IsAny<Assignment>()), Times.Once);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
             // Assert
             foreach (var badTask in badTasks)
             {
-                Assert.Throws<DomainValidationException>(() => DomainTestContext.AssignmentService.Create(badTask));
+                Assert.Throws<DomainValidationException>(() => DomainTestContext2.AssignmentService.Create(badTask));
             }
         }
     }

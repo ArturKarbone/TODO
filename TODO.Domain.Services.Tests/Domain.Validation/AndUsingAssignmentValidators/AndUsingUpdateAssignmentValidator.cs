@@ -10,12 +10,12 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
     [TestFixture]
     public class AndUsingUpdateAssignmentValidator
     {
-        public DomainTestContext DomainTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            DomainTestContext = new DomainTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -24,16 +24,19 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             // Arrange
             // Action
             // Assert
-            Assert.AreEqual("The task is null.", DomainTestContext.UpdateAssignmentValidator.Validate(null).First());
+            Assert.AreEqual("The task is null.", DomainTestContext2.UpdateAssignmentValidator.Validate(null).First());
         }
 
         [Test]
         public void AndAssignmentIsValid()
         {
             // Arrange
-            var goodTask = new Assignment {Id = 2, Name = "Some important work, man!", Done = false, DueDate = DateTime.Today};
+            var goodTask = new Assignment {Id = 0, Name = "Some important work, man!", Done = false, DueDate = DateTime.Today};
+            DomainTestContext2.AssignmentService.Create(goodTask);
             // Action
-            var result = DomainTestContext.UpdateAssignmentValidator.Validate(goodTask);
+            goodTask.Id = 1;
+            goodTask.Name = "New new new name";
+            var result = DomainTestContext2.UpdateAssignmentValidator.Validate(goodTask);
             // Assert
             Assert.IsEmpty(result);
         }
@@ -44,7 +47,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             // Arrange
             var badTask = new Assignment { Id = 985, Done = false, DueDate = DateTime.Today, Name = "Do some work" };
             // Action
-            var result = DomainTestContext.UpdateAssignmentValidator.Validate(badTask);
+            var result = DomainTestContext2.UpdateAssignmentValidator.Validate(badTask);
             // Assert
             Assert.AreEqual("There's no task with this id.", result.First());
         }
@@ -64,7 +67,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             var results = new List<DomainValidationException>();
             foreach (var badTask in badTasks)
             {
-                results.Add(new DomainValidationException{ValidationErrors = DomainTestContext.UpdateAssignmentValidator.Validate(badTask).ToList()});
+                results.Add(new DomainValidationException{ValidationErrors = DomainTestContext2.UpdateAssignmentValidator.Validate(badTask).ToList()});
             }
 
             // Assert
@@ -89,7 +92,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             var results = new List<DomainValidationException>();
             foreach (var badTask in badTasks)
             {
-                results.Add(new DomainValidationException { ValidationErrors = DomainTestContext.UpdateAssignmentValidator.Validate(badTask).ToList() });
+                results.Add(new DomainValidationException { ValidationErrors = DomainTestContext2.UpdateAssignmentValidator.Validate(badTask).ToList() });
             }
 
             // Assert
@@ -112,7 +115,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             };
 
             // Action
-            var results = DomainTestContext.UpdateAssignmentValidator.Validate(badTask);
+            var results = DomainTestContext2.UpdateAssignmentValidator.Validate(badTask);
 
             // Assert
             Assert.AreEqual("Date is invalid.", results.First());

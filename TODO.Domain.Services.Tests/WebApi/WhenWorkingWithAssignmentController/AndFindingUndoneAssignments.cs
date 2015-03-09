@@ -10,12 +10,12 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
     [TestFixture]
     public class AndFindingUndoneAssignments
     {
-        public AssignmentControllerTestContext AssignmentControllerTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            AssignmentControllerTestContext = new AssignmentControllerTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             // Arrange
             // Action
             // Assert
-            Assert.IsInstanceOf<NotFoundResult>(AssignmentControllerTestContext.AssignmentController.FindUndone());
+            Assert.IsInstanceOf<NotFoundResult>(DomainTestContext2.AssignmentController.FindUndone());
         }
 
         [Test]
@@ -38,11 +38,11 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             };
             foreach (var createNewAssignmentViewModel in todo)
             {
-                AssignmentControllerTestContext.AssignmentController.Create(createNewAssignmentViewModel);
+                DomainTestContext2.AssignmentController.Create(createNewAssignmentViewModel);
             }
             // Action
             // Assert
-            Assert.IsInstanceOf<NotFoundResult>(AssignmentControllerTestContext.AssignmentController.FindUndone());
+            Assert.IsInstanceOf<NotFoundResult>(DomainTestContext2.AssignmentController.FindUndone());
         }
 
         [Test]
@@ -56,11 +56,11 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             };
             foreach (var createNewAssignmentViewModel in todo)
             {
-                AssignmentControllerTestContext.AssignmentController.Create(createNewAssignmentViewModel);
+                DomainTestContext2.AssignmentController.Create(createNewAssignmentViewModel);
             }
             // Action
             // Assert
-            Assert.IsInstanceOf<OkNegotiatedContentResult<List<Assignment>>>(AssignmentControllerTestContext.AssignmentController.FindUndone());
+            Assert.IsInstanceOf<OkNegotiatedContentResult<List<Assignment>>>(DomainTestContext2.AssignmentController.FindUndone());
         }
 
         [Test]
@@ -74,11 +74,11 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             };
             foreach (var createNewAssignmentViewModel in todo)
             {
-                AssignmentControllerTestContext.AssignmentController.Create(createNewAssignmentViewModel);
+                DomainTestContext2.AssignmentController.Create(createNewAssignmentViewModel);
             }
             // Action
             // Assert
-            Assert.IsInstanceOf<OkNegotiatedContentResult<List<Assignment>>>(AssignmentControllerTestContext.AssignmentController.FindUndone());
+            Assert.IsInstanceOf<OkNegotiatedContentResult<List<Assignment>>>(DomainTestContext2.AssignmentController.FindUndone());
         }
     }
 }

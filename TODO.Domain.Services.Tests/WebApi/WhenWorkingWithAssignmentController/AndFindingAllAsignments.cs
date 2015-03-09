@@ -9,12 +9,12 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
 {
     public class AndFindingAllAsignments
     {
-        public AssignmentControllerTestContext AssignmentControllerTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            AssignmentControllerTestContext = new AssignmentControllerTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -30,10 +30,10 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             };
             foreach (var assignment in assignments)
             {
-                AssignmentControllerTestContext.AssignmentController.Create(assignment);
+                DomainTestContext2.AssignmentController.Create(assignment);
             }
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.FindAll();
+            var result = DomainTestContext2.AssignmentController.FindAll();
             // Assert
             Assert.IsInstanceOf<OkNegotiatedContentResult<List<Assignment>>>(result);
         }

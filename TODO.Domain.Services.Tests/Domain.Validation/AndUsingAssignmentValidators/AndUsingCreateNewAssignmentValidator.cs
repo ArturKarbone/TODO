@@ -10,12 +10,12 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
     [TestFixture]
     public class AndUsingCreateNewAssignmentValidator
     {
-        public DomainTestContext DomainTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            DomainTestContext = new DomainTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
         {
             // Arrange
             // Action
-            var result = DomainTestContext.CreateNewAssignmentValidator.Validate(null);
+            var result = DomainTestContext2.CreateNewAssignmentValidator.Validate(null);
             // Assert
             Assert.AreEqual("The task is null.", result.First());
         }
@@ -34,7 +34,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             // Arrange
             var goodTask = new Assignment {Id = 0, Name = "Do some work", Done = false, DueDate = DateTime.Today};
             // Action
-            var result = DomainTestContext.CreateNewAssignmentValidator.Validate(goodTask);
+            var result = DomainTestContext2.CreateNewAssignmentValidator.Validate(goodTask);
             // Assert
             Assert.IsEmpty(result);
         }
@@ -56,7 +56,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             var results = new List<DomainValidationException>();
             foreach (var badTask in badTasks)
             {
-                results.Add(new DomainValidationException{ValidationErrors = DomainTestContext.CreateNewAssignmentValidator.Validate(badTask).ToList()});
+                results.Add(new DomainValidationException{ValidationErrors = DomainTestContext2.CreateNewAssignmentValidator.Validate(badTask).ToList()});
             }
 
             // Assert
@@ -81,7 +81,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             var results = new List<DomainValidationException>();
             foreach (var badTask in badTasks)
             {
-                results.Add(new DomainValidationException { ValidationErrors = DomainTestContext.CreateNewAssignmentValidator.Validate(badTask).ToList() });
+                results.Add(new DomainValidationException { ValidationErrors = DomainTestContext2.CreateNewAssignmentValidator.Validate(badTask).ToList() });
             }
 
             // Assert
@@ -104,7 +104,7 @@ namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
             };
 
             // Action
-            var results = DomainTestContext.CreateNewAssignmentValidator.Validate(badTask);
+            var results = DomainTestContext2.CreateNewAssignmentValidator.Validate(badTask);
             
             // Assert
             Assert.AreEqual("Date is invalid.", results.First());

@@ -10,12 +10,12 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
     [TestFixture]
     public class AndCreatingNewAssignment
     {
-        public AssignmentControllerTestContext AssignmentControllerTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            AssignmentControllerTestContext = new AssignmentControllerTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             // Arrange
             var goodTask = new CreateNewAssignmentViewModel {Done = false, DueDate = DateTime.Today, Name = "DO SOME W3K!"};
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.Create(goodTask);
+            var result = DomainTestContext2.AssignmentController.Create(goodTask);
             // Assert
             Assert.IsInstanceOf<OkResult>(result);
         }
@@ -34,7 +34,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
         {
             // Arrange
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.Create(null);
+            var result = DomainTestContext2.AssignmentController.Create(null);
             // Assert
             Assert.IsInstanceOf<InvalidModelStateResult>(result);
         }
@@ -54,7 +54,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             var results = new List<IHttpActionResult>();
             foreach (var badTask in badTasks)
             {
-                results.Add(AssignmentControllerTestContext.AssignmentController.Create(badTask));
+                results.Add(DomainTestContext2.AssignmentController.Create(badTask));
             }
             // Assert
             foreach (var result in results)

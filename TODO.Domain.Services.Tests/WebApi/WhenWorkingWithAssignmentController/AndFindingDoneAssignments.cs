@@ -10,12 +10,12 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
     [TestFixture]
     public class AndFindingDoneAssignments
     {
-        public AssignmentControllerTestContext AssignmentControllerTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            AssignmentControllerTestContext = new AssignmentControllerTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             // Arrange
             // Action
             // Assert
-            Assert.IsInstanceOf<NotFoundResult>(AssignmentControllerTestContext.AssignmentController.FindDone());
+            Assert.IsInstanceOf<NotFoundResult>(DomainTestContext2.AssignmentController.FindDone());
         }
 
         [Test]
@@ -38,11 +38,11 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             };
             foreach (var createNewAssignmentViewModel in todo)
             {
-                AssignmentControllerTestContext.AssignmentController.Create(createNewAssignmentViewModel);
+                DomainTestContext2.AssignmentController.Create(createNewAssignmentViewModel);
             }
             // Action
             // Assert
-            Assert.IsInstanceOf<NotFoundResult>(AssignmentControllerTestContext.AssignmentController.FindDone());
+            Assert.IsInstanceOf<NotFoundResult>(DomainTestContext2.AssignmentController.FindDone());
         }
 
         [Test]
@@ -56,10 +56,10 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             };
             foreach (var assignment in todo)
             {
-                AssignmentControllerTestContext.AssignmentController.Create(assignment);
+                DomainTestContext2.AssignmentController.Create(assignment);
             }
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.FindDone();
+            var result = DomainTestContext2.AssignmentController.FindDone();
             // Assert
             Assert.IsInstanceOf<OkNegotiatedContentResult<List<Assignment>>>(result);
         }
@@ -75,10 +75,10 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
             };
             foreach (var assignment in todo)
             {
-                AssignmentControllerTestContext.AssignmentController.Create(assignment);
+                DomainTestContext2.AssignmentController.Create(assignment);
             }
             // Action
-            var result = AssignmentControllerTestContext.AssignmentController.FindDone();
+            var result = DomainTestContext2.AssignmentController.FindDone();
             // Assert
             Assert.IsInstanceOf<OkNegotiatedContentResult<List<Assignment>>>(result);
         }

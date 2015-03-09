@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
+using TODO.Domain.Core.Entities;
 using TODO.Domain.Services.Validation;
 
 namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
@@ -6,22 +8,24 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
     [TestFixture]
     public class AndFindingAssignmentById
     {
-        public DomainTestContext DomainTestContext { get; set; }
+        public DomainTestContext2 DomainTestContext2 { get; set; }
 
         [SetUp]
         public void SetUp()
         {
-            DomainTestContext = new DomainTestContext();
+            DomainTestContext2 = new DomainTestContext2();
         }
 
         [Test]
         public void AndIdIsValid_AssignmentMustBeReturned()
         {
             // Arrange
+            var goodTask = new Assignment {Id = 0, Done = false, DueDate = DateTime.Today, Name = "Do the dishes"};
+            DomainTestContext2.AssignmentService.Create(goodTask);
             // Action
-            var assignment = DomainTestContext.AssignmentService.FindById(2);
+            var assignment = DomainTestContext2.AssignmentService.FindById(1);
             // Assert  
-            Assert.AreEqual(DomainTestContext.Assignments.Find(x => x.Id == 2), assignment);
+            Assert.AreEqual(goodTask, assignment);
         }
 
         [Test]
@@ -33,7 +37,7 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
             // Assert 
             foreach (var id in ids)
             {
-                Assert.Throws<DomainValidationException>(() => DomainTestContext.AssignmentService.FindById(id));
+                Assert.Throws<DomainValidationException>(() => DomainTestContext2.AssignmentService.FindById(id));
             }
         }
 
@@ -43,7 +47,7 @@ namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
             // Arrange
             // Action
             // Assert 
-            Assert.Throws<DomainValidationException>(() => DomainTestContext.AssignmentService.FindById(876));
+            Assert.Throws<DomainValidationException>(() => DomainTestContext2.AssignmentService.FindById(876));
         }
     }
 }
