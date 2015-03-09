@@ -48,9 +48,13 @@ namespace TODO.WebApi.Tests.WhenWorkingWithAssignmentController
             MockAssignmentRepository.Setup(x => x.FindForToday())
                 .Returns(() =>
                 {
-                    if (!Assignments.Any()) return null;
-                    var assignments = Assignments.Where(x => x.DueDate.ToShortDateString() == DateTime.Today.ToShortDateString());
-                    return assignments.Any() ? assignments.ToList() : null;
+                    if (Assignments.Any())
+                    {
+                        var assignments = Assignments.Where(x => x.DueDate.ToShortDateString() == DateTime.Today.ToShortDateString());
+                        if (assignments.Any()) return assignments.ToList();
+                        return null;
+                    }
+                    return null;
                 });
             // FindForNextWeek
             MockAssignmentRepository.Setup(x => x.FindForNextWeek()).Returns(() =>

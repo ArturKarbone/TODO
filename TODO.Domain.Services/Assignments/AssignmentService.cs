@@ -25,6 +25,8 @@ namespace TODO.Domain.Services.Assignments
                 var validationErrors = validator.Validate(assignment).ToList();
                 if (validationErrors.Any()) throw new DomainValidationException {ValidationErrors = validationErrors};
 
+                // removing hours and minutes from date
+                assignment.DueDate = assignment.DueDate.Date;
                 _assignmentRepository.Create(assignment);
 
                 transaction.Complete();

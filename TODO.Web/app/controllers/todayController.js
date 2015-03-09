@@ -1,6 +1,6 @@
 ﻿(function () {
     "use strict";
-    angular.module("TODO").controller("todayController", ["$scope", "$route", "taskService", "notificationService", "tasks", function ($scope, $route, taskSerivce, notificationService, tasks) {
+    angular.module("TODO").controller("todayController", ["$scope", "$route", "taskService", "notificationService", "today", function ($scope, $route, taskSerivce, notificationService, today) {
         
         $scope.createTask = {
             dueDate: new Date()
@@ -8,14 +8,10 @@
 
         $scope.todaysTasks = [];
 
-
-        $scope.tasks = tasks;
-        console.log($scope.tasks);
-        if (typeof ($scope.tasks) !== 'string') {
+        $scope.tasks = today;
+        if ($scope.tasks.length > 0) {
             $scope.tasks.forEach(function (task) {
-                var curDate = new Date();
-                var date = new Date(task.dueDate);
-                if (date.getDate() === curDate.getDate() && !task.done) {
+                if (!task.done) {
                     $scope.todaysTasks.push(task);
                 }
             });

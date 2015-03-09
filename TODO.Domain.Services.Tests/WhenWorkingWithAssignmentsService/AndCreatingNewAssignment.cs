@@ -31,7 +31,7 @@ namespace TODO.Domain.Services.Tests.WhenWorkingWithAssignmentsService
         public void AndAssignmentIsValid_AssignmentRepositoryCreateShouldBeCalled()
         {
             // Arrange
-            var goodTask = new Assignment {Id = 0, Name = "The new task FTW!", Done = false, DueDate = DateTime.Today.AddDays(1)};
+            var goodTask = new Assignment {Id = 0, Name = "The new task FTW!", Done = false, DueDate = DateTime.Today};
             // Action
             DomainTestContext.AssignmentService.Create(goodTask);
             // Assert
@@ -51,7 +51,8 @@ namespace TODO.Domain.Services.Tests.WhenWorkingWithAssignmentsService
                 new Assignment {Id = 0, Done = false, DueDate = DateTime.Today, Name = string.Empty},
                 new Assignment {Id = 0, Done = false, DueDate = DateTime.Today, Name = null},
                 new Assignment {Id = 0, Done = false, DueDate = DateTime.Today, Name = "    "},
-                new Assignment {Id = 0, Done = false, DueDate = new DateTime(DateTime.Now.Year, DateTime.Today.Month - 1, DateTime.Today.Day ), Name = "Do some work"}
+                new Assignment {Id = 0, Done = false, DueDate = new DateTime(DateTime.Now.Year, DateTime.Today.Month - 1, DateTime.Today.Day ), Name = "Do some work"},
+                new Assignment {Id = 0, Done = false, Name = "Hallol", DueDate = new DateTime(2015, 3, 8, 23, 58, 58)}
             };
             // Action
             // Assert

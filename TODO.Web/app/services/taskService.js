@@ -37,13 +37,25 @@
         }
 
         var findForToday = function() {
-            return $http.get(serviceBaseUrl + "findfortoday").then(function (response) {
+            return $http.get(serviceBaseUrl + "findfortoday").success(function (response) {
                 return response;
             });
         }
 
         var findForNextWeek = function() {
             return $http.get(serviceBaseUrl + "findfornextweek").then(function (response) {
+                return response;
+            });
+        }
+
+        var findDone = function() {
+            return $http.get(serviceBaseUrl + "finddone").then(function(response) {
+                return response;
+            });
+        }
+
+        var findUndone = function() {
+            return $http.get(serviceBaseUrl + "findundone").then(function(response) {
                 return response;
             });
         }
@@ -55,6 +67,8 @@
         bookServiceFactory.createTask = createTask;
         bookServiceFactory.findForToday = findForToday;
         bookServiceFactory.findForNextWeek = findForNextWeek;
+        bookServiceFactory.findDone = findDone;
+        bookServiceFactory.findUndone = findUndone;
 
         return bookServiceFactory;
     }]);

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{718DB0AD-77B7-4174-942E-B6C31A456104}"
 EndProject
@@ -31,8 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6860F1
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODO.Integration.Tests", "TODO.Integration.Test\TODO.Integration.Tests.csproj", "{63FDB9C6-0F61-4F35-9E4A-F2C0175A5FC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,10 +66,6 @@ Global
 		{2B0BA525-1BF3-416A-9C2F-B2578179ECEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B0BA525-1BF3-416A-9C2F-B2578179ECEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B0BA525-1BF3-416A-9C2F-B2578179ECEC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63FDB9C6-0F61-4F35-9E4A-F2C0175A5FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63FDB9C6-0F61-4F35-9E4A-F2C0175A5FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63FDB9C6-0F61-4F35-9E4A-F2C0175A5FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63FDB9C6-0F61-4F35-9E4A-F2C0175A5FC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,7 +76,6 @@ Global
 		{08112536-A5FF-4E69-91AF-8D9E9656D72D} = {749CFCB1-C8C7-42FE-8938-01EEB40C75BC}
 		{0AC71B26-12A5-49D1-8BFC-3180DD4C8E61} = {B65A88A3-9943-4E6E-8C26-8BAA71C11D2C}
 		{961BBE8D-01F2-4AD7-9FAC-5A8AD1F11EAB} = {B65A88A3-9943-4E6E-8C26-8BAA71C11D2C}
-		{63FDB9C6-0F61-4F35-9E4A-F2C0175A5FC3} = {B65A88A3-9943-4E6E-8C26-8BAA71C11D2C}
 		{954922C0-1D78-414B-8CA6-EA31F57CBE03} = {8F8B6FD0-C2D0-4EA7-A5B2-CB589F501C7A}
 		{2B0BA525-1BF3-416A-9C2F-B2578179ECEC} = {8F8B6FD0-C2D0-4EA7-A5B2-CB589F501C7A}
 	EndGlobalSection

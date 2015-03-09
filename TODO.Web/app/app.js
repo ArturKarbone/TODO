@@ -36,9 +36,11 @@
             controller: "todayController",
             templateUrl: "app/templates/today.html",
             resolve: {
-                tasks: function (taskService) {
-                    return taskService.getAllTasks().then(function (response) {
+                today: function(taskService) {
+                    return taskService.findForToday().then(function(response) {
                         return response.data;
+                    }, function() {
+                        return [];
                     });
                 }
             }
@@ -51,6 +53,13 @@
                 tasks: function (taskService) {
                     return taskService.getAllTasks().then(function (response) {
                         return response.data;
+                    });
+                },
+                nextweek: function(taskService) {
+                    return taskService.findForNextWeek().then(function(response) {
+                        return response.data;
+                    }, function() {
+                        return [];
                     });
                 }
             }

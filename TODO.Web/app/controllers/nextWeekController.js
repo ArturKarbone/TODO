@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module("TODO").controller("nextWeekController", ["$scope", "$location" , "$route", "taskService", "notificationService", "tasks", function ($scope, $location, $route, taskSerivce, notificationService, tasks) {
+    angular.module("TODO").controller("nextWeekController", ["$scope", "$location" , "$route", "taskService", "notificationService", "nextweek", function ($scope, $location, $route, taskSerivce, notificationService, nextweek) {
         $scope.daysOfWeek = [];
 
         $scope.date = new Date();
@@ -12,17 +12,13 @@
         };
 
         $scope.tasksForWeek = [];
-        $scope.tasks = tasks;
+        $scope.nextweek = nextweek;
 
-        if (typeof ($scope.tasks) !== 'string') {
-            $scope.tasks.forEach(function (task) {
-                var curDate = new Date();
-                curDate.setDate(curDate.getDate() + 6);
-                var date = new Date(task.dueDate);
-                if (date < curDate && !task.done) {
-                    var newTask = task;
-                    newTask.dueDate = new Date(task.dueDate);
-                    $scope.tasksForWeek.push(newTask);
+        if ($scope.nextweek.length > 0) {
+            $scope.nextweek.forEach(function (task) {
+                if (!task.done) {
+                    task.dueDate = new Date(task.dueDate);
+                    $scope.tasksForWeek.push(task);
                 }
             });
         }
