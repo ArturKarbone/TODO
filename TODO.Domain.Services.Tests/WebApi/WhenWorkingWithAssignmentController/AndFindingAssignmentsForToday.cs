@@ -41,6 +41,18 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
         }
 
         [Test]
+        public void AndThereAreAssignmentsAndAssignmentsAreDoneForToday_NotFoundResultShouldBeReturned()
+        {
+            // Arrange
+            DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = true, DueDate = DateTime.Today, Name = "Cool stuff for today" });
+            DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = true, DueDate = DateTime.Today, Name = "Sniff sniff" });
+            // Action
+            var result = DomainTestContext2.AssignmentController.FindForToday();
+            // Assert
+            Assert.IsInstanceOf<NotFoundResult>(result);
+        }
+
+        [Test]
         public void AndThereAreAssignmentsOnlyForToday_OkNegotiatedContentResultShouldBeReturned()
         {
             // Arrange

@@ -61,7 +61,7 @@ namespace TODO.Data.Assignments
         {
             if (_dataDbContext.Assignments.Any())
             {
-                var assignments = _dataDbContext.Assignments.Where(x => x.DueDate == DateTime.Today);
+                var assignments = _dataDbContext.Assignments.Where(x => x.DueDate == DateTime.Today).Where(x => !x.Done);
                 if (assignments.Any()) return assignments.ToList();
                 return null;
             }
@@ -73,7 +73,7 @@ namespace TODO.Data.Assignments
             if (_dataDbContext.Assignments.Any())
             {
                 var nextweek = DateTime.Today.AddDays(7).Date;
-                var assignments = _dataDbContext.Assignments.Where(x => x.DueDate < nextweek);
+                var assignments = _dataDbContext.Assignments.Where(x => x.DueDate < nextweek).Where(x => !x.Done);
                 if (assignments.Any()) return assignments.ToList();
                 return null;
             }

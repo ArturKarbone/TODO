@@ -41,7 +41,20 @@ namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
         }
 
         [Test]
-        public void AndThereAreAssignmentsAndAssignmentsForNextWeek_OkNegotiatedContentResultShouldBeReturned()
+        public void AndThereAreAssignmentsAndNoUndoneAssignmentsForNextWeek_NotFoundResultShouldBeReturned()
+        {
+            // Arrange
+            DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = true, DueDate = DateTime.Today.AddDays(2), Name = "Cool stuff" });
+            DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = true, DueDate = DateTime.Today.AddDays(3), Name = "Cool stuff" });
+            DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = true, DueDate = DateTime.Today.AddDays(4), Name = "Cool stuff" });
+            // Action
+            var result = DomainTestContext2.AssignmentController.FindForNextWeek();
+            // Assert
+            Assert.IsInstanceOf<NotFoundResult>(result);
+        }
+
+        [Test]
+        public void AndThereAreAssignmentsAndUndoneAssignmentsForNextWeek_OkNegotiatedContentResultShouldBeReturned()
         {
             // Arrange
             DomainTestContext2.AssignmentController.Create(new CreateNewAssignmentViewModel { Done = false, DueDate = DateTime.Today.AddDays(2), Name = "Cool stuff NW" });

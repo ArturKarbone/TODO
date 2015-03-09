@@ -16,10 +16,8 @@
 
         if ($scope.nextweek.length > 0) {
             $scope.nextweek.forEach(function (task) {
-                if (!task.done) {
-                    task.dueDate = new Date(task.dueDate);
-                    $scope.tasksForWeek.push(task);
-                }
+                task.dueDate = new Date(task.dueDate);
+                $scope.tasksForWeek.push(task);
             });
         }
 

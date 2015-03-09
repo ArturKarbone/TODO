@@ -6,16 +6,7 @@
             dueDate: new Date()
         };
 
-        $scope.todaysTasks = [];
-
-        $scope.tasks = today;
-        if ($scope.tasks.length > 0) {
-            $scope.tasks.forEach(function (task) {
-                if (!task.done) {
-                    $scope.todaysTasks.push(task);
-                }
-            });
-        }
+        $scope.todaysTasks = today;
 
         $scope.date = new Date();
 
