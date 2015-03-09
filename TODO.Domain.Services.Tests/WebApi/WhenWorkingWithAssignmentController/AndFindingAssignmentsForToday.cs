@@ -5,7 +5,7 @@ using NUnit.Framework;
 using TODO.Domain.Core.Entities;
 using TODO.WebApi.Models.Assignments;
 
-namespace TODO.Domain.Services.Tests.WebApi.WhenWorkingWithAssignmentController
+namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
 {
     [TestFixture]
     public class AndFindingAssignmentsForToday

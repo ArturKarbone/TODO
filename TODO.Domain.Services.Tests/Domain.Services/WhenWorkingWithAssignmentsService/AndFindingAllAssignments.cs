@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using TODO.Domain.Core.Entities;
 
-namespace TODO.Domain.Services.Tests.Domain.Services.WhenWorkingWithAssignmentsService
+namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
 {
     [TestFixture]
     public class AndFindingAllAssignments

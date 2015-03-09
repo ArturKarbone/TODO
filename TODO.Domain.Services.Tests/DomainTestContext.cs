@@ -7,7 +7,7 @@ using TODO.Domain.Core.Entities;
 using TODO.Domain.Services.Assignments;
 using TODO.Domain.Services.Validation.Assignments;
 
-namespace TODO.Domain.Services.Tests
+namespace TODO.Tests
 {
     public class DomainTestContext
     {

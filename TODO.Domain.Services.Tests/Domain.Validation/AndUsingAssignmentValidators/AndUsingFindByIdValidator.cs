@@ -3,7 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using TODO.Domain.Services.Validation;
 
-namespace TODO.Domain.Services.Tests.Domain.Validation.AndUsingAssignmentValidators
+namespace TODO.Tests.Domain.Validation.AndUsingAssignmentValidators
 {
     [TestFixture]
     public class AndUsingFindByIdValidator

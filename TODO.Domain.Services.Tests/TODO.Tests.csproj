@@ -7,8 +7,8 @@
     <ProjectGuid>{0AC71B26-12A5-49D1-8BFC-3180DD4C8E61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TODO.Domain.Services.Tests</RootNamespace>
-    <AssemblyName>TODO.Domain.Services.Tests</AssemblyName>
+    <RootNamespace>TODO.Tests</RootNamespace>
+    <AssemblyName>TODO.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -64,7 +64,7 @@
     <Compile Include="WebApi\WhenWorkingWithAssignmentController\AndFindingDoneAssignments.cs" />
     <Compile Include="WebApi\WhenWorkingWithAssignmentController\AndFindingUndoneAssignments.cs" />
     <Compile Include="WebApi\WhenWorkingWithAssignmentController\AndUpdatingAssignment.cs" />
-    <Compile Include="WebApi\WhenWorkingWithAssignmentController\AssignmentControllerTestContext.cs" />
+    <Compile Include="AssignmentControllerTestContext.cs" />
     <Compile Include="Domain.Services\WhenWorkingWithAssignmentsService\AndCreatingNewAssignment.cs" />
     <Compile Include="Domain.Services\WhenWorkingWithAssignmentsService\AndDeletingAssignment.cs" />
     <Compile Include="Domain.Services\WhenWorkingWithAssignmentsService\AndFindingAllAssignments.cs" />

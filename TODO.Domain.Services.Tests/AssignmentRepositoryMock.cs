@@ -5,7 +5,7 @@ using Moq;
 using TODO.Data.Assignments;
 using TODO.Domain.Core.Entities;
 
-namespace TODO.Domain.Services.Tests
+namespace TODO.Tests
 {
     public class AssignmentRepositoryMock
     {

@@ -3,7 +3,7 @@ using System.Web.Http.Results;
 using NUnit.Framework;
 using TODO.WebApi.Models.Assignments;
 
-namespace TODO.Domain.Services.Tests.WebApi.WhenWorkingWithAssignmentController
+namespace TODO.Tests.WebApi.WhenWorkingWithAssignmentController
 {
     [TestFixture]
     public class AndDeletingAssignment

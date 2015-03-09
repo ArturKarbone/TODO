@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using TODO.Domain.Services.Validation;
 
-namespace TODO.Domain.Services.Tests.Domain.Services.WhenWorkingWithAssignmentsService
+namespace TODO.Tests.Domain.Services.WhenWorkingWithAssignmentsService
 {
     [TestFixture]
     public class AndFindingAssignmentById

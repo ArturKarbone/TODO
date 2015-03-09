@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Moq;
-using TODO.Data.Assignments;
-using TODO.Domain.Core.Entities;
-using TODO.Domain.Services.Assignments;
+﻿using TODO.Domain.Services.Assignments;
 using TODO.Domain.Services.Validation.Assignments;
 
-namespace TODO.Domain.Services.Tests
+namespace TODO.Tests
 {
     public class DomainTestContext2
     {
@@ -25,7 +19,6 @@ namespace TODO.Domain.Services.Tests
 
             // Services
             AssignmentService = new AssignmentService(repository.AssignmentRepository.Object);
-
 
             // Validators
             CreateNewAssignmentValidator = new CreateNewAssignmentValidator();

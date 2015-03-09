@@ -7,7 +7,7 @@ using TODO.Domain.Core.Entities;
 using TODO.Domain.Services.Assignments;
 using TODO.WebApi.Controllers;
 
-namespace TODO.Domain.Services.Tests.WebApi.WhenWorkingWithAssignmentController
+namespace TODO.Tests
 {
     public class AssignmentControllerTestContext
     {
