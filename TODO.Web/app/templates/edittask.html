@@ -1,43 +1,27 @@
-﻿<!--<div class="container">
-    <form name="editTaskForm" novalidate>
-        <b>Edit Task:</b><br/>
-        Name: <input class="form-control" type="text" ng-model="task.name" required autofocus/>
-
-        Done: <input class="form-control" type="text" ng-model="task.done" required/>
-
-        DueDate <input class="form-control" type="date" ng-model="task.dueDate" required/>
-
-        <button class="btn btn-primary" type="submit" ng-click="update()" ng-disabled="editTaskForm.$invalid">Save Changes</button>
-    </form>
-    <a class="btn btn-primary" href="#/home">Back</a>
-</div>-->
-
-<div class="row mt">
+﻿<div class="row">
     <div class="col-md-12">
-        <section class="task-panel tasks-widget">
-            <div class="panel-heading">
-                <div class="pull-left">
-                    <h5><i class="fa fa-tasks"></i> Edit Task</h5>
-                </div>
-                <br>
+        <div class="panel-heading">
+            <div class="pull-left">
+                <h5>Edit Task</h5>
             </div>
-            <div class="panel-body">
-                <div class="task-content">
-                    <div>
-                        <form name="editTaskForm" novalidate>
-                            Name: <input class="form-control" type="text" ng-model="task.name" required autofocus />
+            <br>
+        </div>
+        <div class="panel-body">
+            <div>
+                <div>
+                    <form name="editTaskForm" novalidate>
+                        Name: <input class="form-control" type="text" ng-model="task.name" required autofocus />
 
-                            DueDate <input class="form-control" type="date" ng-model="task.dueDate" required />
+                        DueDate <input class="form-control" type="date" ng-model="task.dueDate" required />
 
-                            <button class="btn btn-success" type="submit" ng-click="update()" ng-disabled="editTaskForm.$invalid">Save Changes</button>
-                        </form>
-                        <a class="btn btn-primary" href="#/today" ng-if="return === 'today'">Back</a>
-                        <a class="btn btn-primary" href="#/archive" ng-if="return === 'archive'">Back</a>
-                        <a class="btn btn-primary" href="#/nextweek" ng-if="return === 'nextweek'">Back</a>
-                        <a class="btn btn-primary" href="#/today" ng-if="!return">Back</a>
-                    </div>
+                        <button class="btn btn-success" type="submit" ng-click="update()" ng-disabled="editTaskForm.$invalid">Save Changes</button>
+                    </form>
+                    <a class="btn btn-primary" href="#/today" ng-if="return === 'today'">Back</a>
+                    <a class="btn btn-primary" href="#/archive" ng-if="return === 'archive'">Back</a>
+                    <a class="btn btn-primary" href="#/nextweek" ng-if="return === 'nextweek'">Back</a>
+                    <a class="btn btn-primary" href="#/today" ng-if="!return">Back</a>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </div>

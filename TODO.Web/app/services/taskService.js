@@ -36,11 +36,25 @@
             });
         }
 
+        var findForToday = function() {
+            return $http.get(serviceBaseUrl + "findfortoday").then(function (response) {
+                return response;
+            });
+        }
+
+        var findForNextWeek = function() {
+            return $http.get(serviceBaseUrl + "findfornextweek").then(function (response) {
+                return response;
+            });
+        }
+
         bookServiceFactory.getAllTasks = getAllTasks;
         bookServiceFactory.getTask = getTask;
         bookServiceFactory.deleteTask = deleteTask;
         bookServiceFactory.updateTask = updateTask;
         bookServiceFactory.createTask = createTask;
+        bookServiceFactory.findForToday = findForToday;
+        bookServiceFactory.findForNextWeek = findForNextWeek;
 
         return bookServiceFactory;
     }]);

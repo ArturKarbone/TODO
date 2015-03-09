@@ -1,44 +1,34 @@
 ﻿<h3>
-    <i class="fa fa-angle-right"></i> Archive (all of your tasks)
+    Archive (all of your tasks)
 </h3>
-<!-- ALL TASKS -->
-<div class="row mt" ng-if="tasks.length > 0">
-    <div class="col-md-12">
-        <section class="task-panel tasks-widget">
-            <div class="panel-body">
-                <div class="task-content">
-
-                    <ul class="task-list">
-
-                        <li ng-repeat="task in tasks | orderBy:'dueDate'">
-                            <div class="task-checkbox">
-                                <a class="btn btn-success btn-xs" ng-class="{'btn-success': task.done, 'btn-warning': !task.done}" ng-click="done(task)"><i class=" fa fa-check"></i></a>
-                            </div>
-                            <div class="task-title">
-                                <span class="task-title-sp">{{task.name}}</span>
-                                <span class="label label-success" ng-if="task.done">Done</span>
-                                <span class="label label-warning" ng-if="!task.done">Undone</span>
-                                <div class="pull-right hidden-phone">
-                                    <span>Due: {{task.dueDate | date : mediumDate}}</span>
-                                    <a class="btn btn-primary btn-xs" ng-href="#/edittask?id={{task.id}}&return=archive"><i class="fa fa-pencil"></i></a>
-                                    <a class="btn btn-danger btn-xs" ng-click="delete(task.id)"><i class="fa fa-trash-o "></i></a>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
+<!-- TASKS -->
+<div ng-if="tasks.length > 0">
+    <div>
+        <ul>
+            <li ng-repeat="task in tasks | orderBy:'dueDate'">
+                <div>
+                    <a class="btn btn-success btn-xs" ng-class="{'btn-success': task.done, 'btn-warning': !task.done}" ng-click="done(task)"><i class=" fa fa-check"></i></a>
+                    <span>{{task.name}}</span>
+                    <span ng-if="task.done">Done</span>
+                    <span ng-if="!task.done">Undone</span>
+                    <div>
+                        <span>Due: {{task.dueDate | date : mediumDate}}</span>
+                        <a class="btn btn-primary btn-xs" ng-href="#/edittask?id={{task.id}}&return=archive"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" ng-click="delete(task.id)"><i class="fa fa-trash-o"></i></a>
+                    </div>
                 </div>
+            </li>
+        </ul>
+    </div>
 
-                <div class=" add-task-row">
-                    <a class="btn btn-success btn-sm pull-left" href="" data-toggle="modal" data-target="#myModal">Add New Task</a>
-                </div>
-            </div>
-        </section>
-    </div><!-- /col-md-12-->
-</div><!-- /row -->
+    <div>
+        <a class="btn btn-success btn-sm pull-left" href="" data-toggle="modal" data-target="#myModal">Add New Task</a>
+    </div>
+</div>
 <div ng-if="tasks.length === 0">
     <a class="btn btn-success btn-sm pull-left" data-toggle="modal" data-target="#myModal">Add New Task</a>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
